@@ -2,6 +2,7 @@ import random
 import asyncio
 import aiohttp
 from discord import Game
+import os
 
 import discord
 from discord.ext import commands
