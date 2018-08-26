@@ -6,8 +6,8 @@ class Members():
         self.client = client
 
     @commands.command()
-    async def joined(self,member: discord.Member):
-        await self.client.say('{0.name} joined in {0.joined_at}'.format(member))
+    async def joined(self,member: discord.Member,ctx):
+        await self.ctx.send('{0.name} joined in {0.joined_at}'.format(member))
 
         
     @commands.command(pass_context=True)
@@ -22,14 +22,14 @@ class Members():
         em.add_field(name='Roles', value=', '.join(g.name for g in member.roles))
         em.add_field(name='Joined', value='{0.joined_at}'.format(member))
         em.set_thumbnail(url=member.avatar_url)
-        await self.client.say(embed=em)
+        await self.ctx.send(embed=em)
         
     @commands.command(pass_context=True)
-    async def changelog(self):
+    async def changelog(self,ctx):
       em = discord.Embed()
       em.add_field(name='0.8. and previous versions', value='I don"t remeber everything what I"ve done in every version')
       em.add_field(name='0.9.',  value='added a new Cog called Info2')
-      await self.client.say(embed=em)
+      await self.ctx.send(embed=em)
 
 def setup(client):
     client.add_cog(Members(client))
