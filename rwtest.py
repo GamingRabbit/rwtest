@@ -32,7 +32,7 @@ async def hey(ctx):
     responses =["That is a resounding no", "It is not looking likely", "Too hard to tell", "It is quite possible", "Definitely", "no, sir", "yes", "of course!"]
     await ctx.send(random.choice(responses))
     
-@client.command(pass_context=True)
+@client.command()
 async def counter(ctx):
     embed = discord.Embed(title="Counter", description="Server info", color=0x6FA8DC)
     embed.add_field(name="Name", value=ctx.message.guild.name)
@@ -41,7 +41,7 @@ async def counter(ctx):
     embed.set_thumbnail(url=ctx.message.guild.icon_url)
     await ctx.send(embed=embed)
 
-@client.command(pass_context=True)
+@client.command()
 async def about(ctx):
     embed = discord.Embed(title="About me",description="Hello Sir, I'm *James* the `Butler Bot`, I'm a Bot made by **Gaming Rabbit #9860**. If you want to invite me type James,invite.",color=0x00ff00)
     await ctx.send(embed=embed)
@@ -61,7 +61,7 @@ async def double(number, ctx):
                 description="should I go",
                 brief="should I go",
                 aliases=['location', 'b', 'ughno'],
-                pass_context=True, hidden=True)
+                hidden=True)
 async def nineteen_ball(context):
     possible_responses = [
         'Go left, sir',
@@ -79,7 +79,7 @@ async def nineteen_ball(context):
                 description="I would (your question) what would you do",
                 brief="I would (your question) what would you do",
                 aliases=['what', 'would', 'happen'],
-                pass_context=True,hidden=True)
+                hidden=True)
 async def nineninenine_ball(context):
     possible_responses = [
         'I would run away',
@@ -99,7 +99,7 @@ async def nineninenine_ball(context):
                 description="this funny(your question/joke/video)",
                 brief="this funny",
                 aliases=['is', 'this', 'funny'],
-                pass_context=True,hidden=True)
+                hidden=True)
 async def fortwenty_ball(context):
     possible_responses = [
         'If you call this funny I dont longer want to be friends with you',
@@ -117,7 +117,7 @@ async def fortwenty_ball(context):
                 description="won",
                 brief="won",
                 aliases=['u', 'have', 'won'],
-                pass_context=True,hidden=True)
+                hidden=True)
 async def fuck_yeah(context):
     possible_responses = [
         'ok',
@@ -129,7 +129,7 @@ async def fuck_yeah(context):
                 description="ok",
                 brief="ok",
                 aliases=['o', 'k', 'okey'],
-                pass_context=True)
+                )
 async def ok_questionmark(context):
     possible_responses = [
         'ok',
@@ -140,13 +140,13 @@ async def ok_questionmark(context):
     ]
     await ctx.send(random.choice(possible_responses))    
 
-@client.command(pass_context = True)
+@client.command()
 @commands.has_permissions(kick_members = True) 
 async def kick(ctx, userName: discord.User):
     await client.kick(userName)
     await ctx.send("sucessfully kicked, sir!")
 
-@client.command(pass_context = True)
+@client.command()
 @commands.has_permissions(ban_members = True) 
 async def ban(ctx, userName: discord.User):
     await client.ban(userName)
@@ -167,7 +167,7 @@ async def rps(message, ctx):
     result =(choices.index(user_choice)+rand)%3
     await ctx.send("I chose {}, you {}".format(choices[result], outcome_list[rand]))
 
-@client.command(pass_context=True)
+@client.command()
 async def ping(ctx):
     resp = await ctx.send('Pong! Loading...')
     diff = resp.timestamp - ctx.message.timestamp
@@ -187,14 +187,14 @@ async def grhrr(ctx):
                role = discord.utils.get(member.server.roles,  name="unverified")
                await client.add_roles(member, role)
                
-@client.command(pass_context=True)
+@client.command()
 async def commands(ctx):
     await client.add_reaction(ctx.message,'\N{white heavy check mark}')
     embed = discord.Embed(title="Commands:", description="  `ping`     shows the ping of the Bot\n `Invite`    Invites the Bot\n `vote`    gives the link to vote the bot up on discordbots.org(why should you do this?!)\n `changelog`    shows the versions changelog\n `counter`    shows a little server info\n `rps`    Play Rock Paper scissors with the Bot\n `say`\n `double`    doubles a number\n `square`     squares a number\n `hey`     answers a question with yes or no \n `about`\n `kick`     kicks a member(role `kicker` required)\n `ban`    bans a member\n `joined`      gives out the jointime (in UTC)\n `info`    infos about a member\you\n\n\n`use James,help (command) for more help with the command`", color=0x00ff00)
     await ctx.send(embed=embed)
     await client.send_message(ctx.message.author, embed=embed)
 
-@client.command(pass_context=True, hidden=True)
+@client.command(hidden=True)
 async def Terminal(ctx):
     counter = 0
     channel = discord.Object(id='477465945057525760')
@@ -209,7 +209,7 @@ async def Terminal(ctx):
     await client.edit_message(resp, '` Ping: {:.1f}ms.`'.format(1000*diff.total_seconds()))
     await client.send_message(channel,"-------------------------- \n `Terminal commands:`\n `stdown`\n `status`\n `load`\n `unload`\n `reload`\n ---------------------------")
 
-@client.command(pass_context=True, hidden=True)
+@client.command(hidden=True)
 async def stdown(ctx):
     if ctx.message.author.id == '353501847324983299':
         await ctx.send("shutting down...")
@@ -218,7 +218,7 @@ async def stdown(ctx):
         await ctx.send("You don't have the permission to do this!!!!")
         print(ctx.message.author, "tried to shut me down!")
 
-@client.command(pass_context=True,hidden=True,aliases = ["state"])
+@client.command(hidden=True,aliases = ["state"])
 async def status(ctx,*,message):
     if ctx.message.author.id == '353501847324983299':
          await client.change_presence(game=Game(name= message))
@@ -226,7 +226,7 @@ async def status(ctx,*,message):
     else:
         await ctx.send("You don't own me!")
 
-@client.command(pass_context=True, hidden=True)
+@client.command(hidden=True)
 async def load(ctx,extension_name : str):
     if ctx.message.author.id == '353501847324983299':
         try:
@@ -238,7 +238,7 @@ async def load(ctx,extension_name : str):
     else:
         await ctx.send("I wont let YOU do this")
 
-@client.command(pass_context=True,hidden=True)
+@client.command(hidden=True)
 async def unload(ctx,extension_name : str):
     if ctx.message.author.id == '353501847324983299':
         client.unload_extension(extension_name)
@@ -246,7 +246,7 @@ async def unload(ctx,extension_name : str):
     else:
         await ctx.send("Reporting you for trying to unload {}".format(extension_name))
 
-@client.command(pass_context=True,hidden=True)
+@client.command(hidden=True)
 async def reload(ctx,extension_name : str):
     if ctx.message.author.id == '353501847324983299':
         client.unload_extension(extension_name)
