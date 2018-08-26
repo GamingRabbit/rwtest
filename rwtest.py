@@ -12,7 +12,7 @@ from discord.ext import commands
 client = commands.Bot(case_insensitive=True, command_prefix='test')
 
 @client.command()
-async def hoi():
+async def hoi(ctx):
     await ctx.send("hOI")
 
 client.run(os.getenv("TOKEN"))
