@@ -5,6 +5,7 @@ from discord import Game
 from discord.ext.commands import Bot
 import discord
 from discord.ext import commands
+import os
 
 BOT_PRE="test"
 
