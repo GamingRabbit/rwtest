@@ -8,7 +8,7 @@ from discord.ext import commands
 import os
 
 
-client = commands.Bot(case_insensitive=True, command_prefix='t!')
+client = commands.Bot(case_insensitive=True, command_prefix='t?')
 
 @client.event
 async def on_ready():
