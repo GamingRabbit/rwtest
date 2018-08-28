@@ -18,5 +18,11 @@ async def on_ready():
 @client.command()
 async def say(ctx, message):
     await ctx.send(message)
+    
+    
+@client.command()
+async def hey(ctx):
+    responses =["That is a resounding no", "It is not looking likely", "Too hard to tell", "It is quite possible", "Definitely", "no, sir", "yes", "of course!"]
+    await ctx.send(random.choice(responses))
 
 bot.run(os.getenv("TOKEN"))
